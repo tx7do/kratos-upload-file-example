@@ -23,7 +23,7 @@ plugins:
   # generate typescript code
   #  - remote: buf.build/community/stephenh-ts-proto
   - local: protoc-gen-ts_proto
-    out: ../../frontend/vue/src/rpc/api
+    out: ../../frontend/react-app/src/rpc/api
     opt:
       - outputSchema=false # 生成模式 (const, no-file-descriptor, true, false)
       - outputTypeRegistry=false # 生成类型注册表

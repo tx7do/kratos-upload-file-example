@@ -66,7 +66,8 @@ openapi:
 # generate typescript.
 ts:
 	@cd api && \
-	buf generate --template buf.admin.typescript.gen.yaml
+	buf generate --template buf.vue.typescript.gen.yaml && \
+	buf generate --template buf.react.typescript.gen.yaml
 
 # build all service applications
 build:
