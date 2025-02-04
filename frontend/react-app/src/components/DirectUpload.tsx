@@ -12,6 +12,7 @@ import type {UploadRequestOption} from 'rc-upload/lib/interface';
 
 import {API_URL} from "../util/const";
 import {postFile, putFile} from "../util/file";
+import './styles.css';
 
 export type DirectUploadProps = {};
 
@@ -57,7 +58,7 @@ class DirectUpload extends React.Component<DirectUploadProps, DirectUploadState>
 
         const url = `${API_URL}/file:upload`;
 
-        postFile(url, aFile, {}, true, onProgress, onSuccess, onError);
+        postFile(url, aFile, {}, onProgress, onSuccess, onError);
     }
 
     async handleCustomRequestUploadPut(options: UploadRequestOption) {
@@ -77,20 +78,22 @@ class DirectUpload extends React.Component<DirectUploadProps, DirectUploadState>
 
     render() {
         return (
-            <Space direction={"vertical"}>
-                <Upload
-                    listType="picture-card"
-                    customRequest={this.handleCustomRequestUploadPost}
-                >
-                    {this.state.fileListPost.length >= 8 ? null : uploadButtonPost}
-                </Upload>
-                <Upload
-                    listType="picture-card"
-                    customRequest={this.handleCustomRequestUploadPut}
-                >
-                    {this.state.fileListPut.length >= 8 ? null : uploadButtonPut}
-                </Upload>
-            </Space>
+            <div className="center-content">
+                <Space direction={"vertical"}>
+                    <Upload
+                        listType="picture-card"
+                        customRequest={this.handleCustomRequestUploadPost}
+                    >
+                        {this.state.fileListPost.length >= 8 ? null : uploadButtonPost}
+                    </Upload>
+                    <Upload
+                        listType="picture-card"
+                        customRequest={this.handleCustomRequestUploadPut}
+                    >
+                        {this.state.fileListPut.length >= 8 ? null : uploadButtonPut}
+                    </Upload>
+                </Space>
+            </div>
         );
     }
 }

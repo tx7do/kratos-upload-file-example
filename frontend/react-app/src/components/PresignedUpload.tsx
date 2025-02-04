@@ -10,6 +10,7 @@ import {
 import type {UploadRequestOption} from 'rc-upload/lib/interface';
 
 import {postFile, putFile, retrievePostUrl, retrievePutUrl} from "../util/file";
+import './styles.css';
 
 export type PresignedUploadProps = {};
 
@@ -54,7 +55,7 @@ class PresignedUpload extends React.Component<PresignedUploadProps, PresignedUpl
         const aFile = file as RcFile;
 
         retrievePostUrl(aFile, (aFile, postUrl, formData) => {
-            postFile(postUrl, aFile, formData, false, onProgress, onSuccess, onError);
+            postFile(postUrl, aFile, formData, onProgress, onSuccess, onError);
         });
     }
 
@@ -75,20 +76,22 @@ class PresignedUpload extends React.Component<PresignedUploadProps, PresignedUpl
 
     render() {
         return (
-            <Space direction={"vertical"}>
-                <Upload
-                    listType="picture-card"
-                    customRequest={this.handleCustomRequestUploadPost}
-                >
-                    {this.state.fileListPost.length >= 8 ? null : uploadButtonPost}
-                </Upload>
-                <Upload
-                    listType="picture-card"
-                    customRequest={this.handleCustomRequestUploadPut}
-                >
-                    {this.state.fileListPut.length >= 8 ? null : uploadButtonPut}
-                </Upload>
-            </Space>
+            <div className="center-content">
+                <Space direction={"vertical"}>
+                    <Upload
+                        listType="picture-card"
+                        customRequest={this.handleCustomRequestUploadPost}
+                    >
+                        {this.state.fileListPost.length >= 8 ? null : uploadButtonPost}
+                    </Upload>
+                    <Upload
+                        listType="picture-card"
+                        customRequest={this.handleCustomRequestUploadPut}
+                    >
+                        {this.state.fileListPut.length >= 8 ? null : uploadButtonPut}
+                    </Upload>
+                </Space>
+            </div>
         );
     }
 }

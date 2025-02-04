@@ -46,7 +46,7 @@ function handleCustomRequestUploadPost(options: UploadRequestOption) {
 
   const url = `${API_URL}/file:upload`;
 
-  postFile(url, aFile, {}, true, onProgress, onSuccess, onError);
+  postFile(url, aFile, {}, onProgress, onSuccess, onError);
 }
 
 function handleCustomRequestUploadPut(options: UploadRequestOption) {

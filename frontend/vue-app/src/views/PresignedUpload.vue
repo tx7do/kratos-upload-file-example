@@ -44,7 +44,7 @@ function handleCustomRequestUploadPost(options: UploadRequestOption) {
   const aFile = file as RcFile;
 
   retrievePostUrl(aFile, (aFile, postUrl, formData) => {
-    postFile(postUrl, aFile, formData, false, onProgress, onSuccess, onError);
+    postFile(postUrl, aFile, formData, onProgress, onSuccess, onError);
   });
 }
 

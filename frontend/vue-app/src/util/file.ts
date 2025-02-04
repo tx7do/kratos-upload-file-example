@@ -64,7 +64,6 @@ export function postFile(
   url: string,
   file: File,
   data: object,
-  needMakeFormData: boolean,
   onProgress?: (event: UploadProgressEvent) => void,
   onSuccess?: (body: any, xhr?: XMLHttpRequest) => void,
   onError?: (event: UploadRequestError | ProgressEvent, body?: never) => void,
