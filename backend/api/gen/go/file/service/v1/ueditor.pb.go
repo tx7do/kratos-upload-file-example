@@ -627,7 +627,7 @@ func (x *UEditorResponse) GetList() []*UEditorResponse_Item {
 
 type UEditorUploadRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	Action         *string                `protobuf:"bytes,1,opt,name=action,proto3,oneof" json:"action,omitempty"`                                         // 文件名
+	Action         *string                `protobuf:"bytes,1,opt,name=action,proto3,oneof" json:"action,omitempty"`                                         // 动作
 	File           []byte                 `protobuf:"bytes,2,opt,name=file,proto3,oneof" json:"file,omitempty"`                                             // 文件内容
 	SourceFileName *string                `protobuf:"bytes,3,opt,name=source_file_name,json=sourceFileName,proto3,oneof" json:"source_file_name,omitempty"` // 原文件文件名
 	Mime           *string                `protobuf:"bytes,4,opt,name=mime,proto3,oneof" json:"mime,omitempty"`                                             // 文件的MIME类型

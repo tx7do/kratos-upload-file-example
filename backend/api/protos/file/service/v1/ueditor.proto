@@ -114,7 +114,7 @@ message UEditorUploadRequest {
   optional string action = 1 [
     json_name = "action",
     (gnostic.openapi.v3.property) = { description: "动作" }
-  ]; // 文件名
+  ]; // 动作
 
   optional bytes file = 2 [
     json_name = "file",
