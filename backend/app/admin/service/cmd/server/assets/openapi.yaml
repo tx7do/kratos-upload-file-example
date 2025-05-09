@@ -115,16 +115,6 @@ paths:
                                 $ref: '#/components/schemas/UEditorUploadResponse'
 components:
     schemas:
-        File:
-            type: object
-            properties:
-                fileName:
-                    type: string
-                mime:
-                    type: string
-                content:
-                    type: string
-                    format: bytes
         KratosStatus:
             type: object
             properties:
@@ -332,8 +322,17 @@ components:
             properties:
                 action:
                     type: string
+                    description: 动作
                 file:
-                    $ref: '#/components/schemas/File'
+                    type: string
+                    description: 文件内容
+                    format: bytes
+                sourceFileName:
+                    type: string
+                    description: 原文件文件名
+                mime:
+                    type: string
+                    description: 文件的MIME类型
         UEditorUploadResponse:
             type: object
             properties:
@@ -383,6 +382,12 @@ components:
                     type: string
                     description: 文件内容
                     format: bytes
+                sourceFileName:
+                    type: string
+                    description: 原文件文件名
+                mime:
+                    type: string
+                    description: 文件的MIME类型
         UploadFileResponse:
             type: object
             properties:

@@ -32,37 +32,39 @@ func (s *FileService) OssUploadUrl(ctx context.Context, req *fileV1.OssUploadUrl
 	return s.mc.OssUploadUrl(ctx, req)
 }
 
-func (s *FileService) PostUploadFile(ctx context.Context, req *fileV1.UploadFileRequest, file *fileV1.File) (*fileV1.UploadFileResponse, error) {
-	if file == nil {
+func (s *FileService) PostUploadFile(ctx context.Context, req *fileV1.UploadFileRequest) (*fileV1.UploadFileResponse, error) {
+	if req.File == nil {
 		return nil, fileV1.ErrorUploadFailed("unknown file")
 	}
 
 	if req.BucketName == nil {
-		req.BucketName = trans.Ptr(s.mc.ContentTypeToBucketName(file.Mime))
+		req.BucketName = trans.Ptr(s.mc.ContentTypeToBucketName(req.GetMime()))
 	}
 	if req.ObjectName == nil {
-		req.ObjectName = trans.Ptr(file.FileName)
+		req.ObjectName = trans.Ptr(req.GetSourceFileName())
 	}
 
-	downloadUrl, err := s.mc.UploadFile(ctx, req.GetBucketName(), req.GetObjectName(), file.Content)
+	s.log.Infof("UPLOAD %d\n", len(req.File))
+
+	downloadUrl, err := s.mc.UploadFile(ctx, req.GetBucketName(), req.GetObjectName(), req.GetFile())
 	return &fileV1.UploadFileResponse{
 		Url: downloadUrl,
 	}, err
 }
 
-func (s *FileService) PutUploadFile(ctx context.Context, req *fileV1.UploadFileRequest, file *fileV1.File) (*fileV1.UploadFileResponse, error) {
-	if file == nil {
+func (s *FileService) PutUploadFile(ctx context.Context, req *fileV1.UploadFileRequest) (*fileV1.UploadFileResponse, error) {
+	if req.File == nil {
 		return nil, fileV1.ErrorUploadFailed("unknown file")
 	}
 
 	if req.BucketName == nil {
-		req.BucketName = trans.Ptr(s.mc.ContentTypeToBucketName(file.Mime))
+		req.BucketName = trans.Ptr(s.mc.ContentTypeToBucketName(req.GetMime()))
 	}
 	if req.ObjectName == nil {
-		req.ObjectName = trans.Ptr(file.FileName)
+		req.ObjectName = trans.Ptr(req.GetSourceFileName())
 	}
 
-	downloadUrl, err := s.mc.UploadFile(ctx, req.GetBucketName(), req.GetObjectName(), file.Content)
+	downloadUrl, err := s.mc.UploadFile(ctx, req.GetBucketName(), req.GetObjectName(), req.GetFile())
 	return &fileV1.UploadFileResponse{
 		Url: downloadUrl,
 	}, err
